@@ -5,6 +5,10 @@ export const GlobalStyle = createGlobalStyle`
         --font-family: "Poppins", sans-serif;;
     }
 
+ 
+
+  
+
     body, html{
         width: 100%;
         height: 100%;
