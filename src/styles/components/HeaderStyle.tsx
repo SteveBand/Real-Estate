@@ -5,7 +5,7 @@ export const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 0 5px;
 
   h4 {
     letter-spacing: 2px;
@@ -15,6 +15,7 @@ export const HeaderStyle = styled.header`
     list-style: none;
     display: flex;
     gap: 2px;
+    padding: 0;
 
     li {
       padding: 0 10px;

@@ -2,18 +2,21 @@ import styled from "styled-components";
 
 export const DashboardStyle = styled.section`
   height: 100%;
+  gap: 20px;
+  max-width: 1520px;
+  margin: 0 auto;
   section.content {
     box-sizing: border-box;
     padding: 20px;
     display: flex;
-    max-width: 1520px;
+    gap: 50px;
     height: 100%;
 
     /* OPTIONS BAR CSS START */
 
     .options-bar-wrapper {
       flex: 0.33;
-
+      max-width: 370px;
       nav {
         ul {
           list-style: none;
@@ -45,6 +48,11 @@ export const DashboardStyle = styled.section`
       }
 
       .type {
+        margin-top: 3rem;
+        p {
+          font-weight: 500;
+          font-size: 17px;
+        }
         label {
           display: block;
           position: relative;
@@ -52,6 +60,7 @@ export const DashboardStyle = styled.section`
           cursor: pointer;
           font-size: 16px;
           user-select: none;
+          margin: 12px 0;
         }
 
         input[type="checkbox"] {
@@ -65,7 +74,8 @@ export const DashboardStyle = styled.section`
           left: 0;
           height: 15px;
           width: 15px;
-          border: 1px solid #80808017;
+          border: 1px solid #80808034;
+          border-radius: 2px;
         }
 
         span.checkmark::after {
@@ -89,6 +99,99 @@ export const DashboardStyle = styled.section`
           background-color: black;
         }
       }
+
+      .price-range p {
+        font-weight: 500;
+        font-size: 17px;
+        margin-bottom: 10px;
+      }
+
+      .price-range {
+        padding: 10px 0;
+      }
+
+      .graph {
+        position: relative;
+        min-width: 370px;
+        margin-bottom: 20px;
+        span {
+          display: inline-block;
+          border: 1px solid gray;
+          margin: 0 0.5px;
+          box-sizing: border-box;
+        }
+      }
+
+      .minmax-inputs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+
+        div {
+          flex: 1;
+          width: 100%;
+
+          label {
+            display: block;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            color: var(--text-light-color);
+          }
+
+          .input-container {
+            width: 100%;
+            border: 1px solid var(--light-border);
+            box-sizing: border-box;
+            overflow-x: visible;
+            display: flex;
+            padding: 5px;
+
+            span {
+              font-size: 18px;
+            }
+
+            input {
+              width: 100%;
+              outline: none;
+              padding: 5px 2px;
+              border: none;
+              font-size: 16px;
+
+              &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+              }
+            }
+          }
+        }
+      }
+
+      .floor-area {
+        box-sizing: border-box;
+        padding: 20px 0;
+
+        p {
+          font-weight: 500;
+          font-size: 17px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .lot-size {
+        box-sizing: border-box;
+        padding: 20px 0;
+
+        p {
+          font-weight: 500;
+          font-size: 17px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .year-built {
+        input {
+          width: 100%;
+        }
+      }
     }
 
     /* OPTIONS BAR CSS END */
@@ -97,8 +200,149 @@ export const DashboardStyle = styled.section`
 
     .content-wrapper {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      max-width: 1500px;
+
+      .map-container {
+        height: 100%;
+        min-height: 270px;
+        width: 100%;
+        /* flex: 0.3; */
+        margin-bottom: 20px;
+        filter: grayscale(100%);
+        .leaflet-container {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .cards-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+        justify-content: center;
+
+        .card {
+          width: 100%;
+          min-width: 300px;
+
+          .price {
+            display: flex;
+            justify-content: space-between;
+            h3 {
+              margin: 0;
+              font-weight: 500;
+            }
+          }
+
+          p {
+            font-size: 13px;
+            color: #adadad;
+            margin-top: 5px;
+          }
+        }
+        img {
+          width: 100%;
+        }
+      }
     }
   }
 
   /* CONTENT WRAPPER CSS END */
+`;
+
+export const RangeInput = styled.input`
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+  position: absolute;
+  background-color: transparent;
+  bottom: -10px;
+  left: 0;
+
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #ffffff;
+    border-radius: 0px;
+    border: 0px solid #8a8a8a;
+  }
+  &::-webkit-slider-thumb {
+    box-shadow: 1px 1px 10px #828282;
+    border: 0px solid #8a8a8a;
+    height: 14px;
+    width: 14px;
+    border-radius: 50px;
+    background: #b9b9b9;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -10.5px;
+  }
+  &:focus::-webkit-slider-runnable-track {
+    background: #ffffff;
+  }
+  &::-moz-range-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #ffffff;
+    border-radius: 0px;
+    border: 0px solid #8a8a8a;
+  }
+  &::-moz-range-thumb {
+    box-shadow: 1px 1px 10px #828282;
+    border: 0px solid #8a8a8a;
+    height: 22px;
+    width: 22px;
+    border-radius: 50px;
+    background: #dadada;
+    cursor: pointer;
+  }
+  &::-ms-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  &::-ms-fill-lower {
+    background: #ffffff;
+    border: 0px solid #8a8a8a;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000;
+  }
+  &::-ms-fill-upper {
+    background: #ffffff;
+    border: 0px solid #8a8a8a;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000;
+  }
+  &::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 1px 1px 10px #828282;
+    border: 0px solid #8a8a8a;
+    height: 22px;
+    width: 22px;
+    border-radius: 50px;
+    background: #dadada;
+    cursor: pointer;
+  }
+  &:focus::-ms-fill-lower {
+    background: #ffffff;
+  }
+  &:focus::-ms-fill-upper {
+    background: #ffffff;
+  }
 `;
