@@ -2,9 +2,11 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import data from "../assets/data.json";
 import "leaflet/dist/leaflet.css";
 import Card from "./Card";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 export function Content() {
+  const [filter, setFilter] = useState("Newest");
   const dataArr = useMemo(() => {
     const newArr = data.slice(0, 13);
     return newArr;
@@ -28,7 +30,12 @@ export function Content() {
           </Marker>
         </MapContainer>
       </article>
-      <div className="filter"></div>
+      <div className="filter">
+        <p>
+          sort by: {filter}
+          <RiArrowDropDownLine />
+        </p>
+      </div>
       <section className="cards-wrapper">
         {dataArr.map((el) => {
           return <Card data={el} key={el.id} />;

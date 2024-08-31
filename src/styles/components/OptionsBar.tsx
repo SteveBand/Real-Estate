@@ -1,4 +1,10 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { RangeInput } from "../DashboardStyle";
 
 export function OptionsBar() {
@@ -14,40 +20,6 @@ export function OptionsBar() {
     setSelected(value);
   }
 
-  // function createCanvas() {
-  //   var c = document.getElementById("range") as HTMLCanvasElement;
-  //   var ctx = c.getContext("2d");
-  //   var circle = c.getContext("2d");
-  //   ctx?.beginPath();
-  //   ctx?.clearRect(0, 0, c.width, c.height);
-  //   let numberOfRect = 30;
-  //   let rectWidth = c.width / numberOfRect - 4;
-  //   let height = 10;
-  //   let startingPoint = 5;
-  //   if (ctx && circle) {
-  //     for (let i = 0; i <= numberOfRect; i++) {
-  //       if (i > 15) {
-  //         height -= 4;
-  //         startingPoint += rectWidth + 2;
-  //       } else {
-  //         height += 4;
-  //         startingPoint += rectWidth + 2;
-  //       }
-  //       ctx?.rect(startingPoint, c.height - height, rectWidth, height);
-  //       ctx?.stroke();
-  //     }
-
-  //     ctx.fillStyle = "white";
-  //     // ctx.fill();
-  //     // ctx?.stroke();
-
-  //     circle.arc(20, c.height, 10, 0, 2 * Math.PI);
-  //     circle.fillStyle = "black";
-  //     circle.fill();
-  //     circle.stroke();
-  //   }
-  // }
-
   function createGraph() {
     const graphContainer = document.getElementById("graph") as HTMLDivElement;
     const spansArr = Array.from(document.querySelectorAll("#graph span"));
@@ -59,7 +31,6 @@ export function OptionsBar() {
     for (let i = 0; i < numbOfElements; i++) {
       const newRect = document.createElement("span");
       newRect.style.height = `${height}px`;
-      newRect.style.width = `${width}px`;
       newRect.setAttribute("aria-label", `${i}`);
       graphContainer?.appendChild(newRect);
       if (i > 19) {
@@ -73,7 +44,7 @@ export function OptionsBar() {
   function handleDrag(e: ChangeEvent<HTMLInputElement>) {
     const inputValue: number = Number(e.target.value);
     const numbOfElements = 37;
-    const spanElementWidth = document.querySelector("#graph span")?.clientWidth;
+    // const spanElementWidth = document.querySelector("#graph span")?.clientWidth;
     const spanElements = Array.from(
       document.querySelectorAll("#graph span")
     ) as Array<HTMLSpanElement>;
@@ -89,8 +60,26 @@ export function OptionsBar() {
     });
   }
 
+  // const changeSpanWidth = useCallback(() => {
+  //   const graph = document.querySelector("#graph") as HTMLDivElement;
+  //   const numbOfElements = 37;
+  //   const width = Math.floor(graph?.offsetWidth / 37) - 1;
+  //   const spans: Array<HTMLSpanElement> = Array.from(
+  //     document.querySelectorAll("#graph span")
+  //   );
+  //   spans.forEach((span) => {
+  //     span.style.width = `${width}px`;
+  //   });
+
+  //   console.log(graph.offsetWidth, width, width * 37);
+  // }, []);
+
   useEffect(() => {
     createGraph();
+
+    // window.addEventListener("resize", changeSpanWidth);
+
+    // return () => window.removeEventListener("resize", changeSpanWidth);
   }, []);
   return (
     <section className="options-bar-wrapper">

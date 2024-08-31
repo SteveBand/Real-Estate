@@ -4,6 +4,8 @@ export const DashboardStyle = styled.section`
   height: 100%;
   gap: 20px;
   max-width: 1520px;
+  overflow: hidden;
+
   margin: 0 auto;
   section.content {
     box-sizing: border-box;
@@ -17,6 +19,7 @@ export const DashboardStyle = styled.section`
     .options-bar-wrapper {
       flex: 0.33;
       max-width: 370px;
+      min-width: 250px;
       nav {
         ul {
           list-style: none;
@@ -112,12 +115,19 @@ export const DashboardStyle = styled.section`
 
       .graph {
         position: relative;
-        min-width: 370px;
+        /* min-width: 370px; */
+        box-sizing: border-box;
+        /* padding: 0 2px; */
         margin-bottom: 20px;
+        display: flex;
+        align-items: flex-end;
+        gap: 1px;
+
         span {
           display: inline-block;
+          flex: 1;
           border: 1px solid gray;
-          margin: 0 0.5px;
+          /* margin: 0 0.5px; */
           box-sizing: border-box;
         }
       }
@@ -192,6 +202,9 @@ export const DashboardStyle = styled.section`
           width: 100%;
         }
       }
+
+      /* @media screen and (max-width: ) {
+      } */
     }
 
     /* OPTIONS BAR CSS END */
@@ -207,9 +220,8 @@ export const DashboardStyle = styled.section`
 
       .map-container {
         height: 100%;
-        min-height: 270px;
+        height: 270px;
         width: 100%;
-        /* flex: 0.3; */
         margin-bottom: 20px;
         filter: grayscale(100%);
         .leaflet-container {
@@ -218,11 +230,24 @@ export const DashboardStyle = styled.section`
         }
       }
 
+      .filter {
+        p {
+          display: flex;
+          align-items: center;
+
+          svg {
+            font-size: 18px;
+          }
+        }
+      }
+
       .cards-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 15px;
         justify-content: center;
+        overflow-y: auto;
+        max-height: 100%;
 
         .card {
           width: 100%;
@@ -245,6 +270,14 @@ export const DashboardStyle = styled.section`
         }
         img {
           width: 100%;
+        }
+
+        @media screen and (max-width: 1380px) {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        @media screen and (max-width: 1000px) {
+          grid-template-columns: 1fr;
         }
       }
     }
